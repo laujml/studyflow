@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  nombre       String
+  createdAt    DateTime @default(now())
+
+  cursos    Curso[]
+  tareas    Tarea[]
+  eventos   Evento[]
+}
+
+model Curso {
+  id       String @id @default(uuid())
+  userId   String
+  nombre   String
+  docente  String
+  correo   String
+  programa String
+
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  calificaciones Calificacion[]
+  archivos       Archivo[]
+  tareas         Tarea[]
+}
+
+model Tarea {
+  id             String     @id @default(uuid())
+  userId         String
+  cursoId        String?
+  nombre         String
+  fechaLimite    DateTime
+  dificultad     Dificultad
+  tiempoEstimado Float
+  completada     Boolean    @default(false)
+  createdAt      DateTime   @default(now())
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  curso Curso? @relation(fields: [cursoId], references: [id], onDelete: SetNull)
+}
+
+model Evento {
+  id          String     @id @default(uuid())
+  userId      String
+  titulo      String
+  descripcion String?
+  fecha       DateTime
+  fechaFin    DateTime?
+  tipo        TipoEvento @default(OTRO)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Calificacion {
+  id         String   @id @default(uuid())
+  cursoId    String
+  nombre     String
+  nota       Float
+  notaMaxima Float
+  porcentaje Float
+  createdAt  DateTime @default(now())
+
+  curso Curso @relation(fields: [cursoId], references: [id], onDelete: Cascade)
+}
+
+model Archivo {
+  id        String   @id @default(uuid())
+  cursoId   String
+  nombre    String
+  url       String
+  tipo      String
+  createdAt DateTime @default(now())
+
+  curso Curso @relation(fields: [cursoId], references: [id], onDelete: Cascade)
+}
+
+enum Dificultad {
+  FACIL
+  MEDIA
+  DIFICIL
+}
+
+enum TipoEvento {
+  EXAMEN
+  ENTREGA
+  CLASE
+  OTRO
+}
