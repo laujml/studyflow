@@ -47,6 +47,133 @@
   --text-light: #6F607E;
   --text-muted: #81728F;
   --white: #FFFFFF;
+  --theme-page-bg: #FFF5F9;
+  --theme-sidebar-bg: #F9E3EA;
+  --theme-sidebar-border: #FFD6E3;
+  --theme-surface: #FFFFFF;
+  --theme-raised: #FFF6F8;
+  --theme-text: #473A54;
+  --theme-text-strong: #2D2D2D;
+  --theme-text-secondary: #6F607E;
+  --theme-border: #E8DCE5;
+  --theme-pink-surface: #F9E3EA;
+  --theme-pink-inner: #FFF6F8;
+  --theme-pink-accent: #FFB5C8;
+  --theme-pink-border: #FF85A6;
+  --theme-pink-shadow: #F7D8E3;
+  --theme-lila-surface: #E8E1FF;
+  --theme-lila-inner: #F8F6FF;
+  --theme-lila-accent: #C9B8FF;
+  --theme-lila-border: #A090E0;
+  --theme-lila-shadow: #DDD3FF;
+  --theme-sage-surface: #D6E6DD;
+  --theme-sage-inner: #E3EFE8;
+  --theme-sage-accent: #CFE0D7;
+  --theme-sage-border: #9DB8AA;
+  --theme-sage-shadow: #BDD2C8;
+  --theme-shadow-soft: 0 8px 20px rgba(110, 80, 100, 0.12);
+  --pink-surface-dark: #F9E3EA;
+  --pink-surface-raised-dark: #FFF6F8;
+  --lila-surface-dark: #E8E1FF;
+  --lila-surface-raised-dark: #F8F6FF;
+  --sage-surface-dark: #D6E6DD;
+  --sage-surface-raised-dark: #E3EFE8;
+  --theme-tip-bg: #FFB5C8;
+  --theme-tip-border: #FF85A6;
+  --dark-surface: #FFFFFF;
+  --dark-surface-raised: #FFF6F8;
+  --dark-text: #473A54;
+  --dark-muted: #6F607E;
+  --dark-border: #E8DCE5;
+  --theme-overlay: rgba(255, 200, 220, 0.35);
+  --decor-cloud-light: #FFD3E3;
+  --decor-star-light: #B995F3;
+  --decor-heart-light: #F68EAE;
+  --decor-sparkle-light: #D590D8;
+  --decor-flower-light: #9ED5C8;
+  --theme-pattern-color: color-mix(in srgb, var(--theme-pink-accent) 48%, transparent);
+  --pink-accent-dark: #FFB5C8;
+  --pink-border-dark: #FF85A6;
+  --lila-accent-dark: #C9B8FF;
+  --lila-border-dark: #A090E0;
+  --sage-accent-dark: #CFE0D7;
+  --sage-border-dark: #9DB8AA;
+}
+
+[data-theme='dark'] {
+  --theme-page-bg: #26232B;
+  --theme-sidebar-bg: #302A35;
+  --theme-sidebar-border: #685A6B;
+  --theme-surface: #352D39;
+  --theme-raised: #403544;
+  --theme-text: #FFF4FA;
+  --theme-text-strong: #FFF4FA;
+  --theme-text-secondary: #D5C5D1;
+  --theme-border: #685A6B;
+  --pink-surface-dark: #4A2F3A;
+  --pink-surface-raised-dark: #5A3544;
+  --lila-surface-dark: #3B3354;
+  --lila-surface-raised-dark: #4A3E68;
+  --sage-surface-dark: #2F4138;
+  --sage-surface-raised-dark: #3A4E44;
+  --theme-pink-surface: var(--pink-surface-dark);
+  --theme-pink-inner: var(--pink-surface-raised-dark);
+  --theme-pink-accent: #D97A9B;
+  --theme-pink-border: #D97898;
+  --theme-pink-shadow: rgba(243, 154, 181, 0.2);
+  --theme-lila-surface: var(--lila-surface-dark);
+  --theme-lila-inner: var(--lila-surface-raised-dark);
+  --theme-lila-accent: #B9A7F7;
+  --theme-lila-border: #9586C9;
+  --theme-lila-shadow: rgba(185, 167, 247, 0.2);
+  --theme-sage-surface: var(--sage-surface-dark);
+  --theme-sage-inner: var(--sage-surface-raised-dark);
+  --theme-sage-accent: #9CBDAF;
+  --theme-sage-border: #789789;
+  --theme-sage-shadow: rgba(156, 189, 175, 0.18);
+  --theme-shadow-soft: 0 10px 24px rgba(20, 16, 23, 0.45);
+  --theme-tip-bg: #B85C78;
+  --theme-tip-border: #D97A9B;
+  --dark-surface: #352D39;
+  --dark-surface-raised: #403544;
+  --dark-text: #FFF4FA;
+  --dark-muted: #D5C5D1;
+  --dark-border: #685A6B;
+  --theme-overlay: rgba(20, 16, 23, 0.68);
+  --decor-cloud-light: #FFE8F1;
+  --decor-star-light: #FFB5C8;
+  --decor-heart-light: #FFD6E3;
+  --decor-sparkle-light: #C9B8FF;
+  --decor-flower-light: #B8F0E6;
+  --theme-pattern-color: color-mix(in srgb, var(--theme-pink-accent) 35%, transparent);
+  --pink-accent-dark: #D97A9B;
+  --pink-border-dark: #D97A9B;
+  --lila-accent-dark: #B9A7F7;
+  --lila-border-dark: #9586C9;
+  --sage-accent-dark: #9CBDAF;
+  --sage-border-dark: #789789;
+  --cream: var(--dark-surface-raised);
+  --cream-dark: var(--dark-border);
+  --white: var(--dark-surface);
+  --text: var(--dark-text);
+  --text-strong: var(--dark-text);
+  --text-light: var(--dark-muted);
+  --pink: var(--pink-accent-dark);
+  --pink-light: var(--pink-surface-dark);
+  --pink-surface: var(--pink-surface-dark);
+  --pink-inner: var(--pink-surface-raised-dark);
+  --pink-dark: var(--pink-border-dark);
+  --lila: var(--lila-accent-dark);
+  --lila-light: var(--lila-surface-dark);
+  --lila-surface: var(--lila-surface-dark);
+  --lila-inner: var(--lila-surface-raised-dark);
+  --lila-dark: var(--lila-border-dark);
+  --mint: var(--sage-accent-dark);
+  --mint-light: var(--sage-surface-dark);
+  --mint-surface: var(--sage-surface-dark);
+  --mint-inner: var(--sage-surface-raised-dark);
+  --mint-dark: var(--sage-shadow);
+  --mint-ink: var(--sage-accent-dark);
 }
 
 * {
@@ -57,12 +184,62 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: var(--cream);
-  color: var(--text);
-  background-image: radial-gradient(var(--pink-light) 1px, transparent 1px);
+  background-color: var(--theme-page-bg);
+  color: var(--theme-text);
+  background-image: radial-gradient(var(--theme-pattern-color) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 h1, h2, h3 {
   font-family: 'Fredoka One', cursive;
+}
+
+.metadata-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 11px;
+  border: 2px solid;
+  border-radius: 999px;
+  color: var(--dark-text);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.metadata-chip--pink {
+  background: var(--pink-inner);
+  border-color: var(--pink-light);
+  box-shadow: 0 2px 0 var(--theme-pink-shadow);
+}
+
+.metadata-chip--lila {
+  background: var(--lila-inner);
+  border-color: var(--lila-light);
+  box-shadow: 0 2px 0 var(--theme-lila-shadow);
+}
+
+.metadata-chip--sage {
+  background: var(--sage-surface-raised-dark);
+  border-color: var(--sage-border-dark);
+  box-shadow: 0 2px 0 var(--theme-sage-shadow);
+}
+
+[data-theme='dark'] .metadata-chip--pink {
+  background: var(--pink-surface-raised-dark);
+  border-color: var(--pink-border-dark);
+}
+
+[data-theme='dark'] .metadata-chip--lila {
+  background: var(--lila-surface-raised-dark);
+  border-color: var(--lila-border-dark);
+}
+
+[data-theme='dark'] .metadata-chip--sage {
+  background: var(--sage-surface-raised-dark);
+  border-color: var(--sage-border-dark);
 }

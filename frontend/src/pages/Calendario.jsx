@@ -20,10 +20,10 @@ function Sparkle({ size = 16, color = '#C9B8FF', style = {} }) {
 
 /* ── Badge tipo evento ── */
 const TIPO_MAP = {
-  EXAMEN: { label: 'Examen', bg: '#FFE8F1', color: 'var(--pink-ink)', dot: 'var(--pink-ink)' },
-  ENTREGA: { label: 'Entrega', bg: '#E4DCFF', color: 'var(--lila-ink)', dot: 'var(--lila-ink)' },
-  CLASE: { label: 'Clase', bg: '#DFFAF5', color: 'var(--mint-ink)', dot: 'var(--mint-ink)' },
-  OTRO: { label: 'Otro', bg: '#FFF5F9', color: 'var(--text-light)', dot: 'var(--lila-ink)' }
+  EXAMEN: { label: 'Examen', bg: 'var(--pink-inner)', color: 'var(--pink-ink)', dot: 'var(--pink-ink)' },
+  ENTREGA: { label: 'Entrega', bg: 'var(--lila-inner)', color: 'var(--lila-ink)', dot: 'var(--lila-ink)' },
+  CLASE: { label: 'Clase', bg: 'var(--mint-inner)', color: 'var(--mint-ink)', dot: 'var(--mint-ink)' },
+  OTRO: { label: 'Otro', bg: 'var(--dark-surface-raised)', color: 'var(--text-light)', dot: 'var(--lila-ink)' }
 }
 
 function EventTypeBadge({ tipo }) {
@@ -40,12 +40,12 @@ function EventTypeBadge({ tipo }) {
 function Modal({ title, onClose, children }) {
   return (
     <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(255,200,220,0.35)',
+      position: 'fixed', inset: 0, background: 'var(--theme-overlay)',
       backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', zIndex: 1000, padding: '20px'
     }} onClick={e => e.target === e.currentTarget && onClose()}>
       <div style={{
-        background: 'white', borderRadius: '24px', padding: '28px',
+        background: 'var(--dark-surface)', borderRadius: '24px', padding: '28px',
         width: '100%', maxWidth: '420px',
         border: '2px solid var(--lila-light)', boxShadow: '6px 6px 0px var(--lila-light)',
         position: 'relative'
@@ -229,8 +229,8 @@ export default function Calendario() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           position: 'relative', overflow: 'hidden'
         }}>
-          <Star size={16} color="#E4DCFF" style={{ position: 'absolute', top: 12, right: 28 }}/>
-          <Sparkle size={11} color="#FFD6E3" style={{ position: 'absolute', bottom: 12, right: 52 }}/>
+          <Star size={16} color="var(--decor-star-light)" style={{ position: 'absolute', top: 12, right: 28 }}/>
+          <Sparkle size={11} color="var(--decor-sparkle-light)" style={{ position: 'absolute', bottom: 12, right: 52 }}/>
 
           <button onClick={() => navMes(-1)} style={{
             background: 'var(--cream)', border: '2px solid var(--cream-dark)', borderRadius: '12px',
@@ -556,7 +556,7 @@ export default function Calendario() {
                 }}
               >
                 <div style={{
-                  width: '14px', height: '14px', borderRadius: '50%', background: 'white',
+                  width: '14px', height: '14px', borderRadius: '50%', background: 'var(--dark-surface)',
                   position: 'absolute', top: '2px',
                   left: form.esRango ? '20px' : '2px',
                   transition: 'left 0.2s',
@@ -616,7 +616,7 @@ export default function Calendario() {
               fontFamily: "'Nunito', sans-serif", fontWeight: 700, cursor: 'pointer', color: 'var(--text-light)'
             }}>Cancelar</button>
             <button onClick={() => eliminar(confirmDelete.id)} style={{
-              flex: 1, padding: '10px', background: '#FFE8F1',
+              flex: 1, padding: '10px', background: 'var(--pink-inner)',
               border: '2px solid var(--pink)', borderRadius: '12px',
               fontFamily: "'Fredoka One', cursive", fontSize: '1rem', color: 'var(--pink-dark)',
               cursor: 'pointer', boxShadow: '0 2px 0px var(--pink)'

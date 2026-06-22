@@ -20,12 +20,12 @@ function Sparkle({ size = 16, color = '#C9B8FF', style = {} }) {
 function Modal({ title, onClose, children }) {
   return (
     <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(255,200,220,0.35)',
+       position: 'fixed', inset: 0, background: 'var(--theme-overlay)',
       backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', zIndex: 1000, padding: '20px'
     }} onClick={e => e.target === e.currentTarget && onClose()}>
       <div style={{
-        background: 'white', borderRadius: '24px', padding: '28px',
+        background: 'var(--dark-surface)', borderRadius: '24px', padding: '28px',
         width: '100%', maxWidth: '440px',
         border: '2px solid var(--mint-light)', boxShadow: '6px 6px 0px var(--mint-light)',
         position: 'relative'
@@ -58,12 +58,12 @@ function FilePreviewModal({ archivo, onClose }) {
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(255,200,220,0.35)',
+      position: 'fixed', inset: 0, background: 'var(--theme-overlay)',
       backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', zIndex: 1000, padding: '20px'
     }} onClick={e => e.target === e.currentTarget && onClose()}>
       <div style={{
-        background: 'white', borderRadius: '20px', padding: '18px',
+        background: 'var(--dark-surface)', borderRadius: '20px', padding: '18px',
         width: 'min(980px, 96vw)', height: 'min(760px, 92vh)',
         border: '2px solid var(--mint-light)', boxShadow: '6px 6px 0px var(--mint-shadow)',
         display: 'flex', flexDirection: 'column', gap: '12px'
@@ -104,7 +104,7 @@ function FilePreviewModal({ archivo, onClose }) {
             <iframe
               src={previewUrl}
               title={archivo.nombre}
-              style={{ width: '100%', height: '100%', border: 'none', background: 'white' }}
+              style={{ width: '100%', height: '100%', border: 'none', background: 'var(--dark-surface)' }}
             />
           ) : (
             <div style={{
@@ -177,17 +177,17 @@ function FilterPill({ active, onClick, children }) {
     <button onClick={onClick} style={{
       padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 700,
       fontFamily: "'Nunito', sans-serif", cursor: 'pointer',
-      background: active ? 'var(--theme-mint)' : 'white',
-      color: active ? 'var(--text-strong)' : 'var(--text-light)',
-      border: active ? '2px solid var(--theme-mint-border)' : '2px solid var(--mint-light)',
-      boxShadow: active ? '0 2px 0px var(--theme-mint-shadow)' : 'none'
+      background: active ? 'var(--sage-accent-dark)' : 'var(--sage-surface-raised-dark)',
+      color: active ? 'var(--dark-text)' : 'var(--dark-muted)',
+      border: active ? '2px solid var(--sage-border-dark)' : '2px solid var(--sage-border-dark)',
+      boxShadow: active ? '0 2px 0px var(--sage-border-dark)' : 'none'
     }}>{children}</button>
   )
 }
 
-const CARD_COLORS = ['var(--mint-card)', 'var(--mint-soft)', 'var(--mint-light)', 'var(--mint-card)']
-const CARD_SHADOWS = ['var(--mint-shadow)', 'var(--mint-shadow)', 'var(--mint-shadow)', 'var(--mint-shadow)']
-const CARD_INKS = ['var(--mint-ink)', 'var(--mint-ink)', 'var(--mint-ink)', 'var(--mint-ink)']
+const CARD_COLORS = ['var(--sage-accent-dark)', 'var(--sage-accent-dark)', 'var(--sage-accent-dark)', 'var(--sage-accent-dark)']
+const CARD_SHADOWS = ['var(--sage-border-dark)', 'var(--sage-border-dark)', 'var(--sage-border-dark)', 'var(--sage-border-dark)']
+const CARD_INKS = ['var(--dark-text)', 'var(--dark-text)', 'var(--dark-text)', 'var(--dark-text)']
 
 const tipoIcono = (tipo) => {
   if (!tipo) return 'FILE'
@@ -199,12 +199,12 @@ const tipoIcono = (tipo) => {
   return 'FILE'
 }
 const tipoColor = (tipo) => {
-  if (!tipo) return { bg: '#F0F0F0', color: '#888' }
-  if (tipo.includes('pdf')) return { bg: '#FFE8F1', color: 'var(--pink-ink)' }
-  if (tipo.includes('image')) return { bg: '#E4DCFF', color: 'var(--lila-ink)' }
+  if (!tipo) return { bg: 'var(--dark-surface-raised)', color: 'var(--dark-muted)' }
+  if (tipo.includes('pdf')) return { bg: 'var(--pink-inner)', color: 'var(--pink-ink)' }
+  if (tipo.includes('image')) return { bg: 'var(--lila-inner)', color: 'var(--lila-ink)' }
   if (tipo.includes('word') || tipo.includes('document')) return { bg: 'var(--mint-light)', color: 'var(--mint-ink)' }
-  if (tipo.includes('sheet') || tipo.includes('excel')) return { bg: '#E8FFE8', color: '#5ba05b' }
-  if (tipo.includes('presentation') || tipo.includes('powerpoint')) return { bg: '#FFF3E0', color: '#E0943A' }
+  if (tipo.includes('sheet') || tipo.includes('excel')) return { bg: 'var(--mint-inner)', color: 'var(--mint-ink)' }
+  if (tipo.includes('presentation') || tipo.includes('powerpoint')) return { bg: 'var(--dark-surface-raised)', color: 'var(--dark-muted)' }
   return { bg: 'var(--cream)', color: 'var(--text-light)' }
 }
 const tipoCategoria = (tipo) => {
@@ -373,8 +373,8 @@ function CursoDetail({ curso, onBack }) {
         border: '2px solid var(--mint-light)', boxShadow: '6px 6px 0px var(--mint-shadow), -2px -2px 0px rgba(255,255,255,0.5)',
         position: 'relative', overflow: 'hidden'
       }}>
-        <Star size={18} color="var(--mint-light)" style={{ position: 'absolute', top: 16, right: 24 }}/>
-        <Sparkle size={12} color="var(--mint)" style={{ position: 'absolute', bottom: 14, right: 44 }}/>
+        <Star size={18} color="var(--decor-star-light)" style={{ position: 'absolute', top: 16, right: 24 }}/>
+        <Sparkle size={12} color="var(--decor-sparkle-light)" style={{ position: 'absolute', bottom: 14, right: 44 }}/>
         <button onClick={onBack} style={{
           background: 'var(--cream)', border: '2px solid var(--cream-dark)', borderRadius: '12px',
           padding: '6px 14px', cursor: 'pointer', fontFamily: "'Nunito', sans-serif",
@@ -791,8 +791,8 @@ export default function Cursos() {
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         position: 'relative', overflow: 'hidden'
       }}>
-        <Star size={18} color="var(--mint-light)" style={{ position: 'absolute', top: 14, right: 28 }}/>
-        <Sparkle size={12} color="var(--mint)" style={{ position: 'absolute', bottom: 14, right: 52 }}/>
+        <Star size={18} color="var(--decor-star-light)" style={{ position: 'absolute', top: 14, right: 28 }}/>
+        <Sparkle size={12} color="var(--decor-sparkle-light)" style={{ position: 'absolute', bottom: 14, right: 52 }}/>
         <div>
           <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '1.8rem', color: 'var(--text)' }}>Mis cursos</h1>
           <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.85rem', color: 'var(--text-light)', fontWeight: 600 }}>
@@ -828,10 +828,11 @@ export default function Cursos() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 360px))', gap: '16px' }}>
           {cursos.map((curso, i) => (
             <div key={curso.id} onClick={() => setDetalle(curso)} style={{
-              background: 'var(--mint-card)', borderRadius: '20px', padding: '20px',
-              border: '2px solid var(--mint-light)',
-              boxShadow: '6px 6px 0px var(--mint-shadow), -2px -2px 0px rgba(255,255,255,0.5)',
-              cursor: 'pointer', transition: 'transform 0.15s ease', position: 'relative', overflow: 'hidden'
+              background: 'var(--sage-surface-raised-dark)', borderRadius: '20px', padding: '20px',
+              border: '2px solid var(--sage-border-dark)',
+              boxShadow: '6px 6px 0px var(--sage-border-dark)',
+              cursor: 'pointer', transition: 'transform 0.15s ease', position: 'relative', overflow: 'hidden',
+              display: 'flex', flexDirection: 'column', height: '100%'
             }}
             onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
@@ -848,28 +849,37 @@ export default function Cursos() {
                   </span>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontFamily: "'Fredoka One', cursive", fontSize: '1rem', color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <p style={{ fontFamily: "'Fredoka One', cursive", fontSize: '1rem', color: 'var(--dark-text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {curso.nombre}
                   </p>
-                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: 'var(--text-light)', fontWeight: 600 }}>
+                  <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: 'var(--dark-muted)', fontWeight: 600 }}>
                     {curso.docente}
                   </p>
                 </div>
               </div>
               {curso.correo && (
-                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: 'var(--text-light)', marginBottom: 8 }}>
+                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.75rem', color: 'var(--dark-muted)', marginBottom: 8 }}>
                   {curso.correo}
                 </p>
               )}
-              <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+              <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '12px' }}>
                 <button onClick={e => openEdit(curso, e)} style={{
-                  flex: 1, padding: '6px', background: 'var(--mint-inner)',
-                  border: '2px solid var(--mint-light)', borderRadius: '10px',
+                  flex: 1, padding: '6px', background: 'var(--sage-surface-raised-dark)',
+                  border: '2px solid var(--sage-border-dark)', borderRadius: '10px',
                   cursor: 'pointer', fontFamily: "'Nunito', sans-serif",
-                  fontWeight: 700, fontSize: '0.75rem', color: 'var(--theme-mint-ink)'
+                  fontWeight: 700, fontSize: '0.75rem', color: 'var(--sage-border-dark)',
+                  boxShadow: '0 2px 0px var(--sage-border-dark)', transition: 'all 0.15s'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'var(--sage-accent-dark)'
+                  e.currentTarget.style.boxShadow = '0 3px 0px var(--sage-border-dark)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'var(--sage-surface-raised-dark)'
+                  e.currentTarget.style.boxShadow = '0 2px 0px var(--sage-border-dark)'
                 }}>Editar</button>
                 <button onClick={e => { e.stopPropagation(); setConfirmDelete(curso) }} style={{
-                  flex: 1, padding: '6px', background: '#FFF0F4',
+                  flex: 1, padding: '6px', background: 'var(--pink-inner)',
                   border: '2px solid var(--pink-light)', borderRadius: '10px',
                   cursor: 'pointer', fontFamily: "'Nunito', sans-serif",
                   fontWeight: 700, fontSize: '0.75rem', color: 'var(--pink-dark)'
@@ -906,7 +916,7 @@ export default function Cursos() {
               fontFamily: "'Nunito', sans-serif", fontWeight: 700, cursor: 'pointer', color: 'var(--text-light)'
             }}>Cancelar</button>
             <button onClick={() => eliminar(confirmDelete.id)} style={{
-              flex: 1, padding: '10px', background: '#FFE8F1',
+              flex: 1, padding: '10px', background: 'var(--pink-inner)',
               border: '2px solid var(--pink)', borderRadius: '12px',
               fontFamily: "'Fredoka One', cursive", fontSize: '1rem', color: 'var(--pink-dark)',
               cursor: 'pointer', boxShadow: '0 2px 0px var(--pink)'

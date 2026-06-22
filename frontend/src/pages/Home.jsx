@@ -28,31 +28,14 @@ function Heart({ size = 20, color = '#FFB5C8', style = {} }) {
   )
 }
 
-function AlertIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L22 20H2L12 2Z" fill="var(--pink-ink)" opacity="0.18"/>
-      <path d="M12 2L22 20H2L12 2Z" stroke="var(--pink-ink)" strokeWidth="2" strokeLinejoin="round"/>
-      <rect x="11" y="9" width="2" height="6" rx="1" fill="var(--pink-ink)"/>
-      <circle cx="12" cy="17" r="1" fill="var(--pink-ink)"/>
-    </svg>
-  )
-}
-
 function DifficultyBadge({ dificultad }) {
   const map = {
-    FACIL: { label: 'Facil', bg: 'var(--mint-soft)', color: 'var(--mint-ink)', border: 'var(--mint-border)' },
-    MEDIA: { label: 'Media', bg: '#E4DCFF', color: 'var(--lila-ink)', border: '#C9B8FF' },
-    DIFICIL: { label: 'Dificil', bg: '#FFE8F1', color: 'var(--pink-ink)', border: '#FFB5C8' }
+    FACIL: { label: 'Fácil', tone: 'sage' },
+    MEDIA: { label: 'Media', tone: 'lila' },
+    DIFICIL: { label: 'Difícil', tone: 'pink' }
   }
   const s = map[dificultad] || map.MEDIA
-  return (
-    <span style={{
-      padding: '2px 8px', borderRadius: '20px', fontSize: '0.7rem',
-      fontWeight: 700, background: s.bg, color: s.color,
-      border: `1px solid ${s.border}`, fontFamily: "'Nunito', sans-serif"
-    }}>{s.label}</span>
-  )
+  return <span className={`metadata-chip metadata-chip--${s.tone}`}>{s.label}</span>
 }
 
 function EventTypeBadge({ tipo }) {
@@ -140,7 +123,7 @@ export default function Home() {
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh' }}>
       <div style={{ textAlign: 'center' }}>
         <Sparkle size={32} color="var(--lila)" style={{ margin: '0 auto 12px' }}/>
-        <p style={{ color: 'var(--text-light)', fontFamily: "'Nunito', sans-serif" }}>Cargando tu plan...</p>
+        <p style={{ color: 'var(--theme-text-secondary)', fontFamily: "'Nunito', sans-serif" }}>Cargando tu plan...</p>
       </div>
     </div>
   )
@@ -150,16 +133,41 @@ export default function Home() {
 
   if (error) return (
     <div style={{
-      background: 'var(--pink-surface)', borderRadius: '20px', padding: '24px',
-      border: '2px solid var(--pink-light)', boxShadow: '4px 4px 0px var(--pink-light)',
-      color: 'var(--pink-dark)', fontFamily: "'Nunito', sans-serif", fontWeight: 800
+      background: 'var(--theme-pink-surface)', borderRadius: '20px', padding: '24px',
+      border: '2px solid var(--theme-pink-border)', boxShadow: '4px 4px 0px var(--theme-pink-shadow)',
+      color: 'var(--theme-pink-accent)', fontFamily: "'Nunito', sans-serif", fontWeight: 800
     }}>
       {error}
     </div>
   )
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '20px', alignItems: 'start' }}>
+    <div style={{
+      '--pink': 'var(--theme-pink-accent)',
+      '--pink-light': 'var(--theme-pink-surface)',
+      '--pink-dark': 'var(--theme-pink-border)',
+      '--pink-surface': 'var(--pink-surface-dark)',
+      '--pink-inner': 'var(--pink-surface-raised-dark)',
+      '--lila': 'var(--theme-lila-accent)',
+      '--lila-light': 'var(--theme-lila-surface)',
+      '--lila-dark': 'var(--theme-lila-border)',
+      '--lila-surface': 'var(--lila-surface-dark)',
+      '--lila-inner': 'var(--lila-surface-raised-dark)',
+      '--mint': 'var(--theme-sage-accent)',
+      '--mint-light': 'var(--theme-sage-surface)',
+      '--mint-soft': 'var(--theme-sage-inner)',
+      '--mint-border': 'var(--theme-sage-border)',
+      '--mint-dark': 'var(--theme-sage-shadow)',
+      '--mint-ink': 'var(--theme-text-secondary)',
+      '--mint-surface': 'var(--sage-surface-dark)',
+      '--mint-inner': 'var(--sage-surface-raised-dark)',
+      '--cream': 'var(--theme-raised)',
+      '--cream-dark': 'var(--theme-border)',
+      '--text': 'var(--theme-text)',
+      '--text-strong': 'var(--theme-text-strong)',
+      '--text-light': 'var(--theme-text-secondary)',
+      display: 'grid', gridTemplateColumns: '1fr 300px', gap: '20px', alignItems: 'start'
+    }}>
 
       {/* COLUMNA PRINCIPAL */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -167,12 +175,12 @@ export default function Home() {
         {/* Header bienvenida */}
         <div style={{
           background: 'var(--pink-surface)', borderRadius: '20px', padding: '24px 28px',
-          border: '2px solid var(--pink-light)', boxShadow: '6px 6px 0px #F7D8E3, -2px -2px 0px rgba(255,255,255,0.55)',
+          border: '2px solid var(--pink-light)', boxShadow: '6px 6px 0px var(--theme-pink-shadow), -2px -2px 0px rgba(255,255,255,0.12)',
           position: 'relative', overflow: 'hidden'
         }}>
-          <Star size={18} color="#FFD6E3" style={{ position: 'absolute', top: 16, right: 24 }}/>
-          <Sparkle size={14} color="#E4DCFF" style={{ position: 'absolute', top: 36, right: 48 }}/>
-          <Heart size={14} color="#FFD6E3" style={{ position: 'absolute', bottom: 16, right: 36 }}/>
+          <Star size={18} color="var(--decor-star-light)" style={{ position: 'absolute', top: 16, right: 24 }}/>
+          <Sparkle size={14} color="var(--decor-sparkle-light)" style={{ position: 'absolute', top: 36, right: 48 }}/>
+          <Heart size={14} color="var(--decor-heart-light)" style={{ position: 'absolute', bottom: 16, right: 36 }}/>
 
           <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', fontFamily: "'Nunito', sans-serif", marginBottom: 2 }}>{saludo},</p>
           <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '2rem', color: 'var(--text)', marginBottom: '16px' }}>
@@ -226,7 +234,7 @@ export default function Home() {
         {/* Plan del día */}
         <div style={{
           background: 'var(--pink-surface)', borderRadius: '20px', padding: '24px',
-          border: '2px solid var(--pink-light)', boxShadow: '6px 6px 0px #F7D8E3, -2px -2px 0px rgba(255,255,255,0.55)'
+          border: '2px solid var(--pink-light)', boxShadow: '6px 6px 0px var(--theme-pink-shadow), -2px -2px 0px rgba(255,255,255,0.12)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
             <SectionTitle color="var(--pink-dark)">Plan de hoy</SectionTitle>
@@ -248,7 +256,7 @@ export default function Home() {
                 <div key={tarea.id} style={{
                   display: 'flex', alignItems: 'center', gap: '12px',
                   padding: '12px 14px', borderRadius: '14px',
-                   background: tarea.alerta ? '#FFF8FA' : 'var(--pink-inner)',
+                   background: tarea.alerta ? 'var(--pink-surface-raised-dark)' : 'var(--pink-inner)',
                    border: `2px solid ${tarea.alerta ? 'var(--pink-light)' : 'var(--cream-dark)'}`,
                    boxShadow: '0 2px 0px rgba(255, 181, 200, 0.35)'
                 }}>
@@ -266,21 +274,14 @@ export default function Home() {
                     </p>
                     <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
                       <DifficultyBadge dificultad={tarea.dificultad}/>
-                      <span style={{ fontSize: '0.72rem', color: 'var(--text-light)', fontFamily: "'Nunito', sans-serif" }}>
-                        {tarea.tiempoEstimado}h
-                      </span>
+                      <span className="metadata-chip metadata-chip--sage">{tarea.tiempoEstimado}h</span>
                       {tarea.curso && (
-                        <span style={{ fontSize: '0.72rem', color: 'var(--lila-dark)', fontWeight: 600, fontFamily: "'Nunito', sans-serif" }}>
-                          {tarea.curso.nombre}
-                        </span>
+                        <span className="metadata-chip metadata-chip--lila">{tarea.curso.nombre}</span>
                       )}
                     </div>
                   </div>
                   {tarea.alerta && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <AlertIcon/>
-                      <span style={{ fontSize: '0.7rem', color: 'var(--pink-ink)', fontWeight: 700, fontFamily: "'Nunito', sans-serif" }}>Urgente</span>
-                    </div>
+                    <span className="metadata-chip metadata-chip--pink" style={{ flexShrink: 0 }}>Prioridad alta</span>
                   )}
                 </div>
               ))}
@@ -294,9 +295,9 @@ export default function Home() {
 
         {/* Frase motivacional */}
         <div style={{
-          background: 'var(--pink)', borderRadius: '20px', padding: '20px',
-          boxShadow: '4px 4px 0px var(--pink-dark)',
-          border: '2px solid var(--pink-dark)',
+          background: 'var(--theme-tip-bg)', borderRadius: '20px', padding: '20px',
+          boxShadow: '4px 4px 0px var(--theme-tip-border)',
+          border: '2px solid var(--theme-tip-border)',
           position: 'relative', overflow: 'hidden'
         }}>
           <Star size={16} color="white" style={{ position: 'absolute', top: 10, right: 14, opacity: 0.5 }}/>
@@ -313,7 +314,7 @@ export default function Home() {
         {/* Proximos eventos */}
         <div style={{
           background: 'var(--lila-surface)', borderRadius: '20px', padding: '20px',
-          border: '2px solid var(--lila-light)', boxShadow: '6px 6px 0px #DDD3FF, -2px -2px 0px rgba(255,255,255,0.5)'
+          border: '2px solid var(--lila-light)', boxShadow: '6px 6px 0px var(--theme-lila-shadow), -2px -2px 0px rgba(255,255,255,0.12)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
             <SectionTitle color="var(--lila-dark)">Proximos eventos</SectionTitle>
@@ -364,7 +365,7 @@ export default function Home() {
         {/* Mis cursos */}
         <div style={{
           background: 'var(--mint-surface)', borderRadius: '20px', padding: '20px',
-          border: '2px solid var(--mint-light)', boxShadow: '6px 6px 0px var(--mint-shadow), -2px -2px 0px rgba(255,255,255,0.5)'
+          border: '2px solid var(--mint-light)', boxShadow: '6px 6px 0px var(--theme-sage-shadow), -2px -2px 0px rgba(255,255,255,0.12)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
             <SectionTitle color="var(--mint-dark)">Mis cursos</SectionTitle>

@@ -72,7 +72,7 @@ function BookIcon() {
 function KawaiiWindow({ title, children, style = {} }) {
   return (
     <div style={{
-      background: 'white',
+      background: 'var(--dark-surface)',
       borderRadius: '12px',
       border: '2px solid var(--pink-light)',
       overflow: 'hidden',
@@ -86,9 +86,9 @@ function KawaiiWindow({ title, children, style = {} }) {
         alignItems: 'center',
         gap: '5px'
       }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.8 }}/>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.6 }}/>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.4 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.8 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.6 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.4 }}/>
         <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.65rem', color: 'white', fontWeight: 700, marginLeft: 4 }}>{title}</span>
       </div>
       <div style={{ padding: '10px 12px' }}>{children}</div>
@@ -141,26 +141,26 @@ export default function Login() {
     }}>
 
       {/* Nubes de fondo */}
-      <Cloud size={120} color="#FFE8F1" style={{ position: 'fixed', top: '5%', left: '-2%', opacity: 0.8 }}/>
-      <Cloud size={90} color="#E4DCFF" style={{ position: 'fixed', top: '12%', right: '5%', opacity: 0.7 }}/>
-      <Cloud size={70} color="#DFFAF5" style={{ position: 'fixed', bottom: '20%', left: '5%', opacity: 0.8 }}/>
-      <Cloud size={100} color="#FFE8F1" style={{ position: 'fixed', bottom: '5%', right: '-2%', opacity: 0.6 }}/>
+      <Cloud size={120} color="var(--decor-cloud-light)" style={{ position: 'fixed', top: '5%', left: '-2%', opacity: 0.9 }}/>
+      <Cloud size={90} color="var(--decor-cloud-light)" style={{ position: 'fixed', top: '12%', right: '5%', opacity: 0.84 }}/>
+      <Cloud size={70} color="var(--decor-flower-light)" style={{ position: 'fixed', bottom: '20%', left: '5%', opacity: 0.88 }}/>
+      <Cloud size={100} color="var(--decor-cloud-light)" style={{ position: 'fixed', bottom: '5%', right: '-2%', opacity: 0.78 }}/>
 
       {/* Estrellas y sparkles */}
-      <Star size={22} color="#FFB5C8" style={{ position: 'fixed', top: '15%', left: '15%' }}/>
-      <Star size={14} color="#C9B8FF" style={{ position: 'fixed', top: '30%', right: '18%' }}/>
-      <Star size={18} color="#FFB5C8" style={{ position: 'fixed', bottom: '30%', right: '15%' }}/>
-      <Sparkle size={18} color="#C9B8FF" style={{ position: 'fixed', top: '22%', left: '25%' }}/>
-      <Sparkle size={14} color="#7ADDD0" style={{ position: 'fixed', bottom: '35%', left: '18%' }}/>
-      <Sparkle size={20} color="#FFB5C8" style={{ position: 'fixed', top: '60%', right: '12%' }}/>
+      <Star size={22} color="var(--decor-star-light)" style={{ position: 'fixed', top: '15%', left: '15%' }}/>
+      <Star size={14} color="var(--decor-star-light)" style={{ position: 'fixed', top: '30%', right: '18%' }}/>
+      <Star size={18} color="var(--decor-star-light)" style={{ position: 'fixed', bottom: '30%', right: '15%' }}/>
+      <Sparkle size={18} color="var(--decor-sparkle-light)" style={{ position: 'fixed', top: '22%', left: '25%' }}/>
+      <Sparkle size={14} color="var(--decor-flower-light)" style={{ position: 'fixed', bottom: '35%', left: '18%' }}/>
+      <Sparkle size={20} color="var(--decor-sparkle-light)" style={{ position: 'fixed', top: '60%', right: '12%' }}/>
 
       {/* Corazones */}
-      <Heart size={18} color="#FFD6E3" style={{ position: 'fixed', top: '40%', left: '8%' }}/>
-      <Heart size={14} color="#FFB5C8" style={{ position: 'fixed', bottom: '42%', right: '20%' }}/>
+      <Heart size={18} color="var(--decor-heart-light)" style={{ position: 'fixed', top: '40%', left: '8%' }}/>
+      <Heart size={14} color="var(--decor-heart-light)" style={{ position: 'fixed', bottom: '42%', right: '20%' }}/>
 
       {/* Flores */}
-      <Flower size={36} color="#B8F0E6" style={{ position: 'fixed', top: '8%', left: '40%' }}/>
-      <Flower size={28} color="#FFD6E3" style={{ position: 'fixed', bottom: '10%', left: '35%' }}/>
+      <Flower size={36} color="var(--decor-flower-light)" style={{ position: 'fixed', top: '8%', left: '40%' }}/>
+      <Flower size={28} color="var(--decor-flower-light)" style={{ position: 'fixed', bottom: '10%', left: '35%' }}/>
 
       {/* Mini ventanas decorativas */}
       <KawaiiWindow title="Materias" style={{
@@ -238,7 +238,7 @@ export default function Login() {
             fontSize: '2.2rem',
             color: 'var(--text)',
             letterSpacing: '0.5px'
-          }}>StudyFlow</h1>
+          }}>Flora</h1>
           <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', marginTop: 4 }}>
             Tu asistente academico personal
           </p>
@@ -246,7 +246,7 @@ export default function Login() {
 
         {/* Card principal */}
         <div style={{
-          background: 'white',
+          background: 'var(--dark-surface)',
           borderRadius: '24px',
           padding: '32px',
           boxShadow: '6px 6px 0px var(--pink-light), 0 8px 32px rgba(255, 181, 200, 0.15)',
@@ -254,8 +254,8 @@ export default function Login() {
           position: 'relative'
         }}>
           {/* Decoración esquina */}
-          <Flower size={28} color="#FFD6E3" style={{ position: 'absolute', top: -14, right: 24 }}/>
-          <Star size={16} color="#C9B8FF" style={{ position: 'absolute', top: -8, right: 60 }}/>
+          <Flower size={28} color="var(--decor-flower-light)" style={{ position: 'absolute', top: -14, right: 24 }}/>
+          <Star size={16} color="var(--decor-star-light)" style={{ position: 'absolute', top: -8, right: 60 }}/>
 
           <h2 style={{
             fontFamily: "'Fredoka One', cursive",
@@ -266,12 +266,12 @@ export default function Login() {
 
           {error && (
             <div style={{
-              background: '#FFE8E8',
-              border: '2px solid #FFB5B5',
+              background: 'var(--pink-inner)',
+              border: '2px solid var(--pink-light)',
               borderRadius: '12px',
               padding: '10px 14px',
               marginBottom: '14px',
-              color: '#CC4444',
+              color: 'var(--pink-accent-dark)',
               fontSize: '0.85rem',
               fontFamily: "'Nunito', sans-serif"
             }}>
@@ -281,12 +281,12 @@ export default function Login() {
 
           {message && (
             <div style={{
-              background: '#DFFAF5',
-              border: '2px solid #B8F0E6',
+              background: 'var(--mint-inner)',
+              border: '2px solid var(--mint-light)',
               borderRadius: '12px',
               padding: '10px 14px',
               marginBottom: '14px',
-              color: '#3A8F82',
+              color: 'var(--mint-ink)',
               fontSize: '0.85rem',
               fontFamily: "'Nunito', sans-serif",
               fontWeight: 700

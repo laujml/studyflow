@@ -58,7 +58,7 @@ function Flower({ size = 24, color = '#B8F0E6', style = {} }) {
 function KawaiiWindow({ title, children, style = {} }) {
   return (
     <div style={{
-      background: 'white',
+      background: 'var(--dark-surface)',
       borderRadius: '12px',
       border: '2px solid var(--lila-light)',
       overflow: 'hidden',
@@ -72,9 +72,9 @@ function KawaiiWindow({ title, children, style = {} }) {
         alignItems: 'center',
         gap: '5px'
       }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.8 }}/>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.6 }}/>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white', opacity: 0.4 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.8 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.6 }}/>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--dark-text)', opacity: 0.4 }}/>
         <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: '0.65rem', color: 'white', fontWeight: 700, marginLeft: 4 }}>{title}</span>
       </div>
       <div style={{ padding: '10px 12px' }}>{children}</div>
@@ -140,21 +140,21 @@ export default function Register() {
       overflow: 'hidden'
     }}>
       {/* Nubes */}
-      <Cloud size={110} color="#E4DCFF" style={{ position: 'fixed', top: '4%', left: '-2%', opacity: 0.8 }}/>
-      <Cloud size={85} color="#FFE8F1" style={{ position: 'fixed', top: '10%', right: '4%', opacity: 0.7 }}/>
-      <Cloud size={75} color="#E4DCFF" style={{ position: 'fixed', bottom: '18%', left: '4%', opacity: 0.8 }}/>
-      <Cloud size={95} color="#DFFAF5" style={{ position: 'fixed', bottom: '4%', right: '-2%', opacity: 0.6 }}/>
+      <Cloud size={110} color="var(--decor-cloud-light)" style={{ position: 'fixed', top: '4%', left: '-2%', opacity: 0.9 }}/>
+      <Cloud size={85} color="var(--decor-cloud-light)" style={{ position: 'fixed', top: '10%', right: '4%', opacity: 0.84 }}/>
+      <Cloud size={75} color="var(--decor-cloud-light)" style={{ position: 'fixed', bottom: '18%', left: '4%', opacity: 0.88 }}/>
+      <Cloud size={95} color="var(--decor-flower-light)" style={{ position: 'fixed', bottom: '4%', right: '-2%', opacity: 0.78 }}/>
 
       {/* Decoraciones */}
-      <Star size={20} color="#C9B8FF" style={{ position: 'fixed', top: '18%', left: '14%' }}/>
-      <Star size={14} color="#FFB5C8" style={{ position: 'fixed', top: '28%', right: '16%' }}/>
-      <Star size={16} color="#C9B8FF" style={{ position: 'fixed', bottom: '28%', right: '14%' }}/>
-      <Sparkle size={16} color="#FFB5C8" style={{ position: 'fixed', top: '20%', left: '26%' }}/>
-      <Sparkle size={14} color="#C9B8FF" style={{ position: 'fixed', bottom: '32%', left: '16%' }}/>
-      <Heart size={16} color="#FFD6E3" style={{ position: 'fixed', top: '42%', left: '7%' }}/>
-      <Heart size={14} color="#C9B8FF" style={{ position: 'fixed', bottom: '40%', right: '18%' }}/>
-      <Flower size={32} color="#E4DCFF" style={{ position: 'fixed', top: '6%', left: '42%' }}/>
-      <Flower size={26} color="#FFD6E3" style={{ position: 'fixed', bottom: '8%', left: '38%' }}/>
+      <Star size={20} color="var(--decor-star-light)" style={{ position: 'fixed', top: '18%', left: '14%' }}/>
+      <Star size={14} color="var(--decor-star-light)" style={{ position: 'fixed', top: '28%', right: '16%' }}/>
+      <Star size={16} color="var(--decor-star-light)" style={{ position: 'fixed', bottom: '28%', right: '14%' }}/>
+      <Sparkle size={16} color="var(--decor-sparkle-light)" style={{ position: 'fixed', top: '20%', left: '26%' }}/>
+      <Sparkle size={14} color="var(--decor-sparkle-light)" style={{ position: 'fixed', bottom: '32%', left: '16%' }}/>
+      <Heart size={16} color="var(--decor-heart-light)" style={{ position: 'fixed', top: '42%', left: '7%' }}/>
+      <Heart size={14} color="var(--decor-heart-light)" style={{ position: 'fixed', bottom: '40%', right: '18%' }}/>
+      <Flower size={32} color="var(--decor-flower-light)" style={{ position: 'fixed', top: '6%', left: '42%' }}/>
+      <Flower size={26} color="var(--decor-flower-light)" style={{ position: 'fixed', bottom: '8%', left: '38%' }}/>
 
       {/* Mini ventanas */}
       <KawaiiWindow title="Mi progreso" style={{
@@ -168,7 +168,7 @@ export default function Register() {
                 <span style={{ fontSize: '0.55rem', color: 'var(--text-light)', fontFamily: "'Nunito', sans-serif" }}>{item.label}</span>
                 <span style={{ fontSize: '0.55rem', color: 'var(--text-light)', fontFamily: "'Nunito', sans-serif" }}>{item.pct}%</span>
               </div>
-              <div style={{ height: 5, background: '#f0f0f0', borderRadius: 10 }}>
+              <div style={{ height: 5, background: 'var(--dark-border)', borderRadius: 10 }}>
                 <div style={{ height: 5, width: `${item.pct}%`, background: item.color, borderRadius: 10 }}/>
               </div>
             </div>
@@ -217,20 +217,20 @@ export default function Register() {
               <path d="M4 28C4 22 9.4 18 16 18C22.6 18 28 22 28 28" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.9"/>
             </svg>
           </div>
-          <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '2.2rem', color: 'var(--text)', letterSpacing: '0.5px' }}>StudyFlow</h1>
+          <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '2.2rem', color: 'var(--text)', letterSpacing: '0.5px' }}>Flora</h1>
           <p style={{ color: 'var(--text-light)', fontSize: '0.9rem', marginTop: 4 }}>Crea tu cuenta y empieza a estudiar</p>
         </div>
 
         <div style={{
-          background: 'white',
+          background: 'var(--dark-surface)',
           borderRadius: '24px',
           padding: '32px',
           boxShadow: '6px 6px 0px var(--lila-light), 0 8px 32px rgba(201, 184, 255, 0.15)',
           border: '2px solid var(--lila-light)',
           position: 'relative'
         }}>
-          <Flower size={28} color="#E4DCFF" style={{ position: 'absolute', top: -14, right: 24 }}/>
-          <Star size={16} color="#FFB5C8" style={{ position: 'absolute', top: -8, right: 60 }}/>
+          <Flower size={28} color="var(--decor-flower-light)" style={{ position: 'absolute', top: -14, right: 24 }}/>
+          <Star size={16} color="var(--decor-star-light)" style={{ position: 'absolute', top: -8, right: 60 }}/>
 
           <h2 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '1.6rem', color: 'var(--text)', marginBottom: '22px' }}>
             Crear cuenta
@@ -238,8 +238,8 @@ export default function Register() {
 
           {error && (
             <div style={{
-              background: '#FFE8E8', border: '2px solid #FFB5B5', borderRadius: '12px',
-              padding: '10px 14px', marginBottom: '14px', color: '#CC4444',
+              background: 'var(--pink-inner)', border: '2px solid var(--pink-light)', borderRadius: '12px',
+              padding: '10px 14px', marginBottom: '14px', color: 'var(--pink-accent-dark)',
               fontSize: '0.85rem', fontFamily: "'Nunito', sans-serif"
             }}>
               {error}

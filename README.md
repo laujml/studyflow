@@ -1,7 +1,7 @@
-# StudyFlow
-![StudyFlow Dashboard](./screenshots/hero.png)
+# Flora
+![Flora Dashboard](./screenshots/hero.png)
 
-StudyFlow es una aplicación web diseñada para ayudar a estudiantes a organizar su vida académica en un solo lugar.
+Flora es una aplicación web diseñada para ayudar a estudiantes a organizar su vida académica en un solo lugar.
 
 Permite gestionar cursos, tareas, eventos, calificaciones y materiales de estudio, mostrando además un panel principal con información priorizada para facilitar la planificación diaria.
 
@@ -199,7 +199,7 @@ npm run dev
 
 ##  Estado del Proyecto
 
-StudyFlow es un proyecto personal desarrollado con fines de aprendizaje y portafolio, enfocado en aplicar buenas prácticas de desarrollo full-stack, organización de código, autenticación, gestión de archivos y diseño de APIs.
+Flora es un proyecto personal desarrollado con fines de aprendizaje y portafolio, enfocado en aplicar buenas prácticas de desarrollo full-stack, organización de código, autenticación, gestión de archivos y diseño de APIs.
 
 ---
 

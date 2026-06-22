@@ -17,43 +17,30 @@ function Sparkle({ size = 16, color = '#C9B8FF', style = {} }) {
     </svg>
   )
 }
-function AlertIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L22 20H2L12 2Z" fill="var(--pink-ink)" opacity="0.18"/>
-      <path d="M12 2L22 20H2L12 2Z" stroke="var(--pink-ink)" strokeWidth="2" strokeLinejoin="round"/>
-      <rect x="11" y="9" width="2" height="6" rx="1" fill="var(--pink-ink)"/>
-      <circle cx="12" cy="17" r="1" fill="var(--pink-ink)"/>
-    </svg>
-  )
-}
-
 function DifficultyBadge({ dificultad }) {
   const map = {
-    FACIL: { label: 'Fácil', bg: '#DFFAF5', color: 'var(--mint-ink)', border: '#B8F0E6' },
-    MEDIA: { label: 'Media', bg: '#E4DCFF', color: 'var(--lila-ink)', border: '#C9B8FF' },
-    DIFICIL: { label: 'Difícil', bg: '#FFE8F1', color: 'var(--pink-ink)', border: '#FFB5C8' }
+    FACIL: { label: 'Fácil', tone: 'sage' },
+    MEDIA: { label: 'Media', tone: 'lila' },
+    DIFICIL: { label: 'Difícil', tone: 'pink' }
   }
   const s = map[dificultad] || map.MEDIA
-  return (
-    <span style={{
-      padding: '2px 8px', borderRadius: '20px', fontSize: '0.7rem',
-      fontWeight: 700, background: s.bg, color: s.color,
-      border: `1px solid ${s.border}`, fontFamily: "'Nunito', sans-serif"
-    }}>{s.label}</span>
-  )
+  return <span className={`metadata-chip metadata-chip--${s.tone}`}>{s.label}</span>
+}
+
+function MetaChip({ children, tone = 'sage' }) {
+  return <span className={`metadata-chip metadata-chip--${tone}`}>{children}</span>
 }
 
 /* ── Modal ── */
 function Modal({ title, onClose, children }) {
   return (
     <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(255,200,220,0.35)',
+      position: 'fixed', inset: 0, background: 'var(--theme-overlay)',
       backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', zIndex: 1000, padding: '20px'
     }} onClick={e => e.target === e.currentTarget && onClose()}>
       <div style={{
-        background: 'white', borderRadius: '24px', padding: '28px',
+        background: 'var(--dark-surface)', borderRadius: '24px', padding: '28px',
         width: '100%', maxWidth: '440px',
         border: '2px solid var(--pink-light)', boxShadow: '6px 6px 0px var(--pink-light)',
         position: 'relative'
@@ -112,10 +99,18 @@ function FilterPill({ active, onClick, children }) {
     <button onClick={onClick} style={{
       padding: '6px 14px', borderRadius: '20px', fontSize: '0.78rem', fontWeight: 700,
       fontFamily: "'Nunito', sans-serif", cursor: 'pointer', transition: 'all 0.15s',
-      background: active ? 'var(--pink)' : 'white',
-      color: active ? 'var(--text-strong)' : 'var(--text-light)',
-      border: active ? '2px solid var(--pink-dark)' : '2px solid var(--cream-dark)',
-      boxShadow: active ? '0 2px 0px var(--pink-dark)' : 'none'
+      background: active ? 'var(--pink-surface-raised-dark)' : 'var(--dark-surface-raised)',
+      color: 'var(--dark-text)',
+      border: active ? '2px solid var(--pink-border-dark)' : '2px solid var(--dark-border)',
+      boxShadow: active ? '0 2px 0px var(--pink-border-dark)' : 'none'
+    }}
+    onMouseEnter={e => {
+      e.currentTarget.style.boxShadow = active
+        ? '0 3px 0px var(--pink-border-dark)'
+        : '0 2px 0px var(--dark-border)'
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.boxShadow = active ? '0 2px 0px var(--pink-border-dark)' : 'none'
     }}>{children}</button>
   )
 }
@@ -259,6 +254,16 @@ export default function Tareas() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <style>{`
+        [data-theme='light'] .task-card {
+          background: var(--pink-surface) !important;
+          border-color: var(--pink-light) !important;
+        }
+
+        [data-theme='light'] .task-card:not(.task-card--completed) {
+          box-shadow: 3px 3px 0 var(--pink-light) !important;
+        }
+      `}</style>
       {/* Header */}
       <div style={{
         background: 'var(--pink-surface)', borderRadius: '20px', padding: '24px 28px',
@@ -266,8 +271,8 @@ export default function Tareas() {
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         position: 'relative', overflow: 'hidden'
       }}>
-        <Star size={18} color="#FFD6E3" style={{ position: 'absolute', top: 14, right: 28 }}/>
-        <Sparkle size={12} color="#E4DCFF" style={{ position: 'absolute', bottom: 14, right: 52 }}/>
+        <Star size={18} color="var(--decor-star-light)" style={{ position: 'absolute', top: 14, right: 28 }}/>
+        <Sparkle size={12} color="var(--decor-sparkle-light)" style={{ position: 'absolute', bottom: 14, right: 52 }}/>
         <div>
           <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '1.8rem', color: 'var(--text)' }}>Mis tareas</h1>
           <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }}>
@@ -317,8 +322,8 @@ export default function Tareas() {
           {tareasFiltradas.map((tarea, i) => {
             const diasInfo = diasRestantes(tarea.fechaLimite)
             return (
-              <div key={tarea.id} style={{
-                background: tarea.alerta ? '#FFE8F1' : 'var(--pink-surface)', borderRadius: '16px', padding: '16px 18px',
+              <div key={tarea.id} className={`task-card${tarea.completada ? ' task-card--completed' : ''}`} style={{
+                background: tarea.alerta ? 'var(--pink-inner)' : 'var(--pink-surface)', borderRadius: '16px', padding: '16px 18px',
                 border: `2px solid ${tarea.completada ? 'var(--cream-dark)' : tarea.alerta ? 'var(--pink-light)' : 'var(--cream-dark)'}`,
                 boxShadow: tarea.completada ? 'none' : '3px 3px 0px var(--cream-dark)',
                 display: 'flex', alignItems: 'center', gap: '14px',
@@ -328,8 +333,8 @@ export default function Tareas() {
                 {/* Checkbox */}
                 <button onClick={e => !tarea.completada && completar(tarea.id, e)} style={{
                   width: 28, height: 28, borderRadius: '50%', flexShrink: 0, cursor: tarea.completada ? 'default' : 'pointer',
-                  background: tarea.completada ? 'var(--mint-dark)' : 'white',
-                  border: `2.5px solid ${tarea.completada ? 'var(--mint-ink)' : 'var(--cream-dark)'}`,
+                  background: tarea.completada ? 'var(--mint-dark)' : 'var(--dark-surface-raised)',
+                  border: `2.5px solid ${tarea.completada ? 'var(--mint-ink)' : 'var(--dark-border)'}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   transition: 'all 0.2s'
                 }}>
@@ -347,28 +352,20 @@ export default function Tareas() {
                     fontFamily: "'Nunito', sans-serif", marginBottom: 4,
                     textDecoration: tarea.completada ? 'line-through' : 'none'
                   }}>{tarea.nombre}</p>
-                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
                     <DifficultyBadge dificultad={tarea.dificultad}/>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-light)', fontFamily: "'Nunito', sans-serif" }}>
-                      {tarea.tiempoEstimado}h
-                    </span>
+                    <MetaChip tone="sage">{tarea.tiempoEstimado}h</MetaChip>
                     {tarea.curso && (
-                      <span style={{ fontSize: '0.72rem', color: 'var(--lila-dark)', fontWeight: 700, fontFamily: "'Nunito', sans-serif" }}>
-                        {tarea.curso.nombre}
-                      </span>
+                      <MetaChip tone="lila">{tarea.curso.nombre}</MetaChip>
                     )}
-                    <span style={{ fontSize: '0.72rem', color: diasInfo.color, fontWeight: 700, fontFamily: "'Nunito', sans-serif" }}>
-                      {new Date(tarea.fechaLimite).toLocaleDateString('es')} · {diasInfo.texto}
-                    </span>
+                    <MetaChip tone="pink">{new Date(tarea.fechaLimite).toLocaleDateString('es')}</MetaChip>
+                    <MetaChip tone="pink">{diasInfo.texto === 'Hoy' ? 'Para hoy' : diasInfo.texto}</MetaChip>
                   </div>
                 </div>
 
                 {/* Alerta */}
                 {tarea.alerta && !tarea.completada && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-                    <AlertIcon/>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--pink-ink)', fontWeight: 700, fontFamily: "'Nunito', sans-serif" }}>Urgente</span>
-                  </div>
+                  <span className="metadata-chip metadata-chip--pink" style={{ flexShrink: 0 }}>Prioridad alta</span>
                 )}
 
                 {/* Acciones */}
@@ -382,7 +379,7 @@ export default function Tareas() {
                     }}>Editar</button>
                   )}
                   <button onClick={e => { e.stopPropagation(); setConfirmDelete(tarea) }} style={{
-                    padding: '5px 10px', background: '#FFF0F4',
+                    padding: '5px 10px', background: 'var(--pink-inner)',
                     border: '2px solid var(--pink-light)', borderRadius: '10px',
                     cursor: 'pointer', fontFamily: "'Nunito', sans-serif",
                     fontWeight: 700, fontSize: '0.75rem', color: 'var(--pink-dark)'
@@ -434,7 +431,7 @@ export default function Tareas() {
               fontFamily: "'Nunito', sans-serif", fontWeight: 700, cursor: 'pointer', color: 'var(--text-light)'
             }}>Cancelar</button>
             <button onClick={() => eliminar(confirmDelete.id)} style={{
-              flex: 1, padding: '10px', background: '#FFE8F1',
+              flex: 1, padding: '10px', background: 'var(--pink-inner)',
               border: '2px solid var(--pink)', borderRadius: '12px',
               fontFamily: "'Fredoka One', cursive", fontSize: '1rem', color: 'var(--pink-dark)',
               cursor: 'pointer', boxShadow: '0 2px 0px var(--pink)'
