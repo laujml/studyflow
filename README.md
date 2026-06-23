@@ -107,7 +107,7 @@ El proyecto incluye:
 ##  Estructura General
 
 ```text
-StudyFlow
+Flora
 │
 ├── backend
 │   ├── prisma
